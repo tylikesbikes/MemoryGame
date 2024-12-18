@@ -2,11 +2,12 @@ const gameContainer = document.getElementById("game");
 const startBtn = document.getElementById('startGame');
 const resetBtn = document.getElementById('resetGame');
 const COLORS = [
-  "red",  "blue",  "green",  "orange",  "purple",  "red",  "blue",  "green",  "orange",  "purple"
+  "red",  "blue",  "green",  "orange",  "purple",  "red",  "blue",  "green",  "orange",  "purple","gray","gray"
 ];
+let howManyStartingColors = COLORS.length;
 let shuffledColors = shuffle(COLORS);
 let gameStarted=false;
-let score=200;
+let score=howManyStartingColors * 30;
 let waiting=false;
 let guessCount=0;
 let guesses=[];
@@ -96,18 +97,18 @@ function handleCardClick(event) {
             guesses[0].style.backgroundColor='white';
           guesses[1].style.backgroundColor='white';
           guesses=[];
-        },1000);
+        },333);
         }
       }
     }
-    if (document.querySelectorAll('.matched').length===10) {
+    if (document.querySelectorAll('.matched').length===howManyStartingColors) {
       setTimeout(function () {alert(`Game over!  It only took you ${guessCount} guesses`);},200);;
       
       if (score>bestScore) {
       localStorage.setItem('bestMemoryScore',score)}
     }
     waiting=true;
-    setTimeout(function() {waiting=false},1000);
+    setTimeout(function() {waiting=false},333);
   }
 }
 
